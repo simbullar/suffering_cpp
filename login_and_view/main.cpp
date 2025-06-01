@@ -15,14 +15,19 @@ class User{
         // writing to file
         fstream userstxt("users.txt", ios::app); userstxt << name << "::" << password << "\n"; userstxt.close();
     }
+    void output_formatted()
+    {
+        cout << "Username: " << name << "\n";
+        cout << "Password: " << password << "\n" << "\n";
+    }
 };
 
 string readnparse_userfile() {
     ifstream users("users.txt");
     string x;
-    getline(users, x);
+    string content((istreambuf_iterator<char>(users)),(istreambuf_iterator<char>()));
     users.close();
-    return x;
+    return content;
 }
 
 int main() {
